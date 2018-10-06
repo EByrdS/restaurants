@@ -22,11 +22,6 @@ RSpec.configure do |config|
   # Use FactoryBot methods in Specs
   config.include FactoryBot::Syntax::Methods
 
-  # Find factory definitions in /spec/factories/*.rb amongst other paths
-  # config.before(:suite) do
-  #   FactoryBot.find_definitions
-  # end
-
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.
