@@ -3,5 +3,12 @@
 require 'rails_helper'
 
 RSpec.describe Restaurant, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it 'creates POINT before save' do
+    restaurant = build :restaurant
+    expect(restaurant.lonlat).to be_nil
+    restaurant.save
+    expect(restaurant.lonlat).to_not be_nil
+    expect(restaurant.lonlat).to be_a RGeo::Geographic::SphericalPointImpl
+    expect(restaurant).to be_valid
+  end
 end
