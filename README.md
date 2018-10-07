@@ -11,6 +11,7 @@ Server running with `rails` as an
 [API](https://guides.rubyonrails.org/api_app.html),
 using `postgresql-9.5` database.
 
+Deployment App is in [Heroku](https://melp-restaurants.herokuapp.com/)
 
 ## Database
 Data validation on database-level is austere as its requirements were not
