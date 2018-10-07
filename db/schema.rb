@@ -10,10 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_06_182411) do
+ActiveRecord::Schema.define(version: 2018_10_07_191932) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "postgis"
 
   create_table "restaurants", force: :cascade do |t|
     t.integer "rating"
@@ -25,11 +26,12 @@ ActiveRecord::Schema.define(version: 2018_10_06_182411) do
     t.string "street"
     t.string "city"
     t.string "state"
-    t.float "lat"
-    t.float "lng"
+    t.float "lat", null: false
+    t.float "lng", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["local_id"], name: "index_restaurants_on_local_id"
+    t.geography "lonlat", limit: {:srid=>4326, :type=>"st_point", :geographic=>true}
+    t.index ["local_id"], name: "index_restaurants_on_local_id", unique: true
   end
 
 end

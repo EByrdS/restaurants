@@ -9,23 +9,33 @@ RSpec.describe RestaurantsController, type: :routing do
     end
 
     it 'routes to #show' do
-      expect(get: '/restaurants/1').to route_to('restaurants#show', local_id: '1')
+      expect(get: '/restaurants/1')
+        .to route_to('restaurants#show', local_id: '1')
     end
 
     it 'routes to #create' do
-      expect(post: '/restaurants').to route_to('restaurants#create')
+      expect(post: '/restaurants')
+        .to route_to('restaurants#create')
     end
 
     it 'routes to #update via PUT' do
-      expect(put: '/restaurants/1').to route_to('restaurants#update', local_id: '1')
+      expect(put: '/restaurants/1')
+        .to route_to('restaurants#update', local_id: '1')
     end
 
     it 'routes to #update via PATCH' do
-      expect(patch: '/restaurants/1').to route_to('restaurants#update', local_id: '1')
+      expect(patch: '/restaurants/1')
+        .to route_to('restaurants#update', local_id: '1')
     end
 
     it 'routes to #destroy' do
-      expect(delete: '/restaurants/1').to route_to('restaurants#destroy', local_id: '1')
+      expect(delete: '/restaurants/1')
+        .to route_to('restaurants#destroy', local_id: '1')
+    end
+
+    it 'routes to #statistics' do
+      expect(get: '/restaurants/statistics')
+        .to route_to('restaurants#statistics')
     end
   end
 end

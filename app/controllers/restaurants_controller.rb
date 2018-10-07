@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# :nodoc:
 class RestaurantsController < ApplicationController
   before_action :set_restaurant, only: %i[show update destroy]
 
@@ -41,6 +42,19 @@ class RestaurantsController < ApplicationController
     @restaurant.destroy
   end
 
+  # GET /restaurants/statistics
+  # GET /restaurants/statistics.json
+  def statistics
+    ratings = Restaurant.within(params[:latitude],
+                                params[:longitude],
+                                params[:radius]).pluck(:rating)
+    render json: {
+      count: ratings.length,
+      avg: ratings.mean,
+      std: ratings.standard_deviation
+    }
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
@@ -48,8 +62,11 @@ class RestaurantsController < ApplicationController
     @restaurant = Restaurant.find_by_local_id!(params[:local_id])
   end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
+  # Never trust parameters from the scary internet,
+  # only allow the white list through.
   def restaurant_params
-    params.require(:restaurant).permit(:local_id, :rating, :name, :site, :email, :phone, :street, :city, :state, :lat, :lng)
+    params.require(:restaurant)
+          .permit(:local_id, :rating, :name, :site, :email, :phone, :street,
+                  :city, :state, :lat, :lng)
   end
 end
