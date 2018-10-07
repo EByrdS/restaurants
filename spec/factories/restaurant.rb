@@ -33,5 +33,14 @@ FactoryBot.define do
     rating { (5..10).to_a.sample }
   end
 
-  factory :invalid_restaurant, parent: :restaurant, traits: %i[no_id bad_rating]
+  trait :no_lat do
+    lat { nil }
+  end
+
+  trait :no_lng do
+    lng { nil }
+  end
+
+  factory :invalid_restaurant, parent: :restaurant,
+                               traits: %i[no_id bad_rating no_lat no_lng]
 end
