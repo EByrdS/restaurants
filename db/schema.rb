@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_07_173718) do
+ActiveRecord::Schema.define(version: 2018_10_07_191932) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 2018_10_07_173718) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.geography "lonlat", limit: {:srid=>4326, :type=>"st_point", :geographic=>true}
-    t.index ["local_id"], name: "index_restaurants_on_local_id"
+    t.index ["local_id"], name: "index_restaurants_on_local_id", unique: true
   end
 
 end

@@ -6,6 +6,7 @@ class Restaurant < ApplicationRecord
                                   message: '%{value} is not a valid rating' }
   validates :lat, presence: true
   validates :lng, presence: true
+  validates :local_id, presence: true
   scope :within, lambda { |latitude, longitude, meters_distance|
     where(format(%{
      ST_Distance(lonlat, 'POINT(%f %f)') < %d
