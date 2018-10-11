@@ -3,6 +3,13 @@
 require 'rails_helper'
 
 RSpec.describe Restaurant, type: :model do
+  describe "Validations" do
+    it { should validate_presence_of(:lat) }
+    it { should validate_presence_of(:lng) }
+    it { should validate_presence_of(:local_id) }
+    it { should validate_inclusion_of(:rating).in_array([0, 1, 2, 3, 4]) }
+  end
+
   it 'creates POINT before save' do
     restaurant = build :restaurant
     expect(restaurant.lonlat).to be_nil
